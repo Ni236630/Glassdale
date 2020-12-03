@@ -2,6 +2,7 @@ import { useConvictions, getConvictions } from "./convictionProvider.js";
 
 
 
+
 const contentTarget = document.querySelector(".filters__crime");
 const eventHub = document.querySelector(".container");
 
@@ -25,13 +26,13 @@ export const convictionSelect = () => {
 
 
 //listening with the eventHub
-eventHub.addEventListener("change", event => {
+eventHub.addEventListener("change", changeEvent => {
   //Only this 'if' the "crimeSelect" element was changed
-  if (event.target.id === "crimeSelect"){
+  if (changeEvent.target.id === "crimeSelect"){
     //Create custom event.
     const customEvent = new CustomEvent("crimeChosen", {
       detail: {
-        crimeThatWasChosen: event.target.value
+        crimeThatWasChosen: changeEvent.target.value
       }
     })
     //Dispatch this to eventHub in main.js
