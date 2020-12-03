@@ -1,48 +1,52 @@
+import { useConvictions } from "../convictions/convictionProvider.js";
 import { getCriminals, useCriminals } from "./criminalProvider.js";
+import { criminal } from "./criminal.js";
 
 const contentTarget = document.querySelector(".criminalsContainer");
-export const criminalList = () => {
+const eventHub = document.querySelector(".container");
+
+
+
+
+          
+
+//Listen for the custom event from convictionSelect
+eventHub.addEventListener("crimeChosen", customEvent =>{
+  const crimeChosen = customEvent.detail.crimeThatWasChosen
  
-  getCriminals().then( () =>
+  
+  
+  if ( crimeChosen !== "0"){
    
-    useCriminals().forEach((criminalObject) =>{
+   const matchingCriminals = appStateCriminals.filter(criminalFromList => { 
     
-    criminalObject =
-    `
+    return  criminalFromList.conviction === crimeChosen
      
-        <section class="criminal__data">
-        <div>
-          <h2>${criminalObject.name}</h2>
-          <p>Age: ${criminalObject.age}</p>
-          <p>Crime: ${criminalObject.conviction}</p>
-          <p>Term start:${new Date(criminalObject.incarceration.start).toLocaleDateString('en-US')}</p>
-          <p>Term start: ${new Date(criminalObject.incarceration.end).toLocaleDateString('en-US')} </p>
-          </div>
-        </section>
-      
-      ` 
-      contentTarget.innerHTML += criminalObject;
     })
-  )
+   
+    render(matchingCriminals)
+
+  } 
+   
+})
+
+let appStateCriminals = []
+// render ALL criminals initially
+export const criminalList = () => {
+  getCriminals()
+    .then(() =>{
+       appStateCriminals = useCriminals()
+      render(appStateCriminals)
+      
+    })
+  }
+  
+const render = criminalCollection => {
   
     
+    contentTarget.innerHTML = `${criminalCollection.map(criminalPerson =>
+      criminal(criminalPerson)
+    ).join("")}
+  `
+  
 }
-//let criminalListNew = [];
-// const criminals = useCriminals();
-// criminals.forEach(criminalObject =>{
-//   criminalObject = `
-//   <section class="criminal__card>
-//     <div class="criminal__data">
-//       <h2>${criminalObject.name}</h2>
-//       <p>Age: ${criminalObject.age}</p>
-//       <p>Crime: ${criminalObject.conviction}</p>
-//       <p>Term start:${new Date(criminalObject.incarceration.start).toLocaleDateString('en-US')}</p>
-//       <p>Term start: ${new Date(criminalObject.incarceration.end).toLocaleDateString('en-US')} </p>
-//     </div>
-//   </section>
-//   `
-  
-//   criminalListNew.push(criminalObject);
-  
-// })
-//  return criminalListNew;
