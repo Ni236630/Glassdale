@@ -15,3 +15,11 @@
   flex-basis: 30%;
 }
 
+header{
+  display:flex
+}
+
+textarea{
+  resize:none;
+}
+
