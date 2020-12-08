@@ -5,6 +5,8 @@ import { useConvictions, getConvictions } from "./convictions/convictionProvider
 import { convictionSelect } from "./convictions/convictionSelect.js";
 import { officerSelect } from "./officers/officerSelect.js";
 import { noteForm } from "./notes/noteForm.js";
+import { ShowNoteButton } from "./notes/showNotesButton.js";
+import "./notes/noteList.js"
 
 
 officerSelect();
@@ -15,6 +17,7 @@ useConvictions();
 getConvictions();
 convictionSelect();
 noteForm();
+ShowNoteButton();
 
 
 // const contentTarget = document.querySelector(".criminalsContainer");

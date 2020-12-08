@@ -1,12 +1,19 @@
-
+ /* .container{
+  display: flex;
+  flex-direction:column ;
+}    */
 .criminalsContainer{
   
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-  border: 2px solid black  ;
+  border: 2px solid black ;
 }
 
+/* .container--left{
+display: flex;
+flex-direction: column;
+} */
 
 
 .criminal__data{
@@ -16,10 +23,20 @@
 }
 
 header{
-  display:flex
+ position: relative;
 }
 
 textarea{
   resize:none;
+}
+
+.note__form{
+  border: 1px solid black;
+}
+#text {
+  margin: 5px;
+}
+.note{
+  border: 1px solid black;
 }
 
