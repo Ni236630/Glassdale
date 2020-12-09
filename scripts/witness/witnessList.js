@@ -2,6 +2,7 @@ import { useWitnesses, getWitnesses } from "./witnessProvider.js";
 
 const contentTarget = document.querySelector(".witness__button");
 const eventHub = document.querySelector(".container");
+const target = document.querySelector(".test")
 
 
 let appStateWitnesses = [];
@@ -28,6 +29,12 @@ eventHub.addEventListener("click", (clickEvent) => {
 });
 
 // listening for witnessButton!
+export const witnessListRender = ()=>{
 eventHub.addEventListener("witnessButtonClicked", customEvent => {
- Target.innerHTML = appStateWitnesses
+  for (let witness in appStateWitnesses){
+   target.innerHTML +=`
+   ${witness.name}
+   `
+ }
 });
+}
