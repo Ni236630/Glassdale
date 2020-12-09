@@ -1,11 +1,9 @@
-import { useConvictions } from "../convictions/convictionProvider.js";
 import { getCriminals, useCriminals } from "./criminalProvider.js";
 import { criminal } from "./criminal.js";
-import { officerSelect } from "../officers/officerSelect.js";
+
 
 const contentTarget = document.querySelector(".criminalsContainer");
 const eventHub = document.querySelector(".container");
-
 
 
 
@@ -26,7 +24,9 @@ eventHub.addEventListener("crimeChosen", customEvent =>{
    
     render(matchingCriminals)
 
-  } 
+  } else {
+    render(appStateCriminals)
+  }
    
 })
 
@@ -44,6 +44,8 @@ eventHub.addEventListener("officerSelected", event =>{
     })
     
     render(matchingOfficer)
+  } else {
+    render(appStateCriminals)
   }
 })
 
@@ -68,3 +70,18 @@ const render = criminalCollection => {
   `
   
 }
+
+
+
+
+eventHub.addEventListener("click", clickEvent => {
+  if (clickEvent.target.id === "associates"){
+   const associateButton = new CustomEvent("associateButtonPressed",{
+     detail: {
+       criminalsAssociate:clickEvent.target.value
+     }
+   })
+   
+      eventHub.dispatchEvent(associateButton)
+  }
+})

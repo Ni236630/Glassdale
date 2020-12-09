@@ -1,6 +1,5 @@
 
 let notes = []
-
 const eventHub = document.querySelector(".container")
 
 const dispatchStateChangeEvent = () => {
@@ -18,8 +17,7 @@ export const useNotes = () =>{
 
 
 export const getNotes = () =>{
-  
-  return fetch("http://localhost.8088/notes")
+  return fetch("http://localhost:8088/notes")
   .then(response =>response.json())
   .then(
     parsedNotes => {
@@ -41,16 +39,4 @@ export const saveNote = note => {
 }
 
 
-//saving note function here!!!!
-eventHub.addEventListener("click",clickEvent =>{
-  if (clickEvent.target.id === "saveNote"){
-    const newNote = {
-    
-      text:"",
-      suspect:"",
-      id: 1++
-      
-    }
-    saveNote(newNote)
-  }
-})
+
