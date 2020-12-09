@@ -8,6 +8,8 @@ import { noteForm } from "./notes/noteForm.js";
 import { ShowNoteButton } from "./notes/showNotesButton.js";
 import "./notes/noteList.js"
 import "./associateAlibi/alibiList.js"
+import { useWitnesses } from "./witness/witnessProvider.js";
+import { witnessButton } from "./witness/witnessList.js";
 
 
 officerSelect();
@@ -19,7 +21,8 @@ getConvictions();
 convictionSelect();
 noteForm();
 ShowNoteButton();
-
+useWitnesses();
+witnessButton();
 
 // const contentTarget = document.querySelector(".criminalsContainer");
 // contentTarget.innerHTML = criminalHTML;

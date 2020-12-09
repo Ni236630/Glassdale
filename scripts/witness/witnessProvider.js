@@ -1,3 +1,4 @@
+
 let witnesses = []
 
 export const useWitnesses = () => {
@@ -14,3 +15,4 @@ export const getWitnesses = () => {
     }
   )
 }
+
