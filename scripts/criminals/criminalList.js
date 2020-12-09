@@ -70,3 +70,18 @@ const render = criminalCollection => {
   `
   
 }
+
+
+
+
+eventHub.addEventListener("click", clickEvent => {
+  if (clickEvent.target.id === "associates"){
+   const associateButton = new CustomEvent("associateButtonPressed",{
+     detail: {
+       criminalsAssociate:clickEvent.target.value
+     }
+   })
+   
+      eventHub.dispatchEvent(associateButton)
+  }
+})
