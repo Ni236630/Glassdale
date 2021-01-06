@@ -1,39 +1,11 @@
 {
   "notes": [
     {
-      "author": "sf",
-      "text": "df",
-      "criminalId": 1,
-      "date": 1607375684119,
-      "id": 1
-    },
-    {
-      "author": "fg",
-      "text": "rty",
-      "criminalId": 7,
-      "date": 1609955014394,
-      "id": 2
-    },
-    {
       "author": "fgh",
       "text": "fgh",
       "criminalId": 5,
       "date": 1609955025273,
       "id": 3
-    },
-    {
-      "author": "fgh",
-      "text": "fgh",
-      "criminalId": 3,
-      "date": 1609955028952,
-      "id": 4
-    },
-    {
-      "author": "fgh",
-      "text": "fgh",
-      "criminalId": 7,
-      "date": 1609955032662,
-      "id": 5
     }
   ]
 }
