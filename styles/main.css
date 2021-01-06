@@ -10,10 +10,10 @@
   border: 2px solid black ;
 }
 
-/* .container--left{
+.container--right{
 display: flex;
 flex-direction: column;
-} */
+} 
 
 
 .criminal__data{
