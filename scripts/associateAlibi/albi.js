@@ -6,11 +6,13 @@ export const alibi = criminalObject => {
   <section class="associate__alibi">
     <div>
       <h2>${criminalObject.name}'s known associate</h2>
-        <p>Name: ${criminalObject.known_associates[0].name}</p>
-        <p>Alibi: ${criminalObject.known_associates[0].alibi}</p>
-      </div>
-    </section>
-     
-  `  
+      ${criminalObject.known_associates.map((associate) => `
+      <h4>${associate.name}</h4>
+      <div>${associate.alibi}</div>`
+      ).join("")}
+    </div>
+  </section>
+  `
 }
+  
 

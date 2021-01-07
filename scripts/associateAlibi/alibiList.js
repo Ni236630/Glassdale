@@ -8,7 +8,9 @@ const eventHub = document.querySelector(".container")
 
 // listen for button press... return associate & alibi
 eventHub.addEventListener("associateButtonPressed", customEvent =>{
+ 
   if(customEvent.detail.criminalAssociate !== "0"){
+  
     const criminals = useCriminals()
     const detail = parseInt(customEvent.detail.criminalsAssociate)
     const associate = criminals.find((criminal) =>{

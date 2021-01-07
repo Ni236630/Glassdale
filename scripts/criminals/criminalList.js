@@ -1,10 +1,19 @@
 import { getCriminals, useCriminals } from "./criminalProvider.js";
 import { criminal } from "./criminal.js";
 import { witnessList } from "../witness/witnessList.js";
+import { getFacilities, useFacilities } from "../facility/facilityProvider.js";
+import { getCriminalFacilities, useCriminalFacilities } from "../facility/criminalFacilityProvider.js";
 
 const contentTarget = document.querySelector(".criminalsContainer");
 const eventHub = document.querySelector(".container");
 
+/*
+
+
+Event listeners 
+
+
+*/
 //Listen for the custom event from convictionSelect
 eventHub.addEventListener("crimeChosen", (customEvent) => {
   const crimeChosen = customEvent.detail.crimeThatWasChosen;
@@ -20,7 +29,9 @@ eventHub.addEventListener("crimeChosen", (customEvent) => {
   }
 });
 
+
 //Listen for the custom event from officerSelect
+
 eventHub.addEventListener("officerSelected", (event) => {
   const officerSelected = event.detail.officer;
 
@@ -35,25 +46,6 @@ eventHub.addEventListener("officerSelected", (event) => {
   }
 });
 
-const witnesses = witnessList();
-
-
-let appStateCriminals = [];
-// render ALL criminals initially
-export const criminalList = () => {
-  getCriminals().then(() => {
-    appStateCriminals = useCriminals();
-    render(appStateCriminals);
-  });
-};
-
-const render = (criminalCollection) => {
-  contentTarget.innerHTML = `${criminalCollection
-    .map((criminalPerson) => criminal(criminalPerson))
-    .join("")}
-  `;
-};
-
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "associates") {
     const associateButton = new CustomEvent("associateButtonPressed", {
@@ -61,7 +53,45 @@ eventHub.addEventListener("click", (clickEvent) => {
         criminalsAssociate: clickEvent.target.value,
       },
     });
-
     eventHub.dispatchEvent(associateButton);
   }
-});
+})
+
+
+// const witnesses = witnessList();
+
+let appStateCriminals = [];
+// render ALL criminals initially
+export const criminalList = () => {
+  getFacilities()
+    .then(getCriminalFacilities)
+    .then(getCriminals)
+    .then(
+      () => {
+        const facilities = useFacilities()
+        const crimFac = useCriminalFacilities()
+        const criminals = useCriminals()
+        
+        render(criminals,crimFac,facilities)
+      }
+    )}
+
+
+    const render = (criminalsToRender, allRelationships, allFacilities) => {
+      // Step 1 - Iterate all criminals
+      contentTarget.innerHTML = criminalsToRender.map(
+          (criminalObject) => {
+              // Step 2 - Filter all relationships to get only ones for this criminal
+              const facilityRelationshipsForThisCriminal = allRelationships.filter(cf => cf.criminalId === criminalObject.id)
+  
+              // Step 3 - Convert the relationships to facilities with map()
+              const facilities = facilityRelationshipsForThisCriminal.map(cf => {
+                  const matchingFacilityObject = allFacilities.find(facility => facility.id === cf.facilityId)
+                  return matchingFacilityObject
+              })
+  
+              // Must pass the matching facilities to the Criminal component
+              return criminal(criminalObject, facilities)
+          }
+      ).join("")
+  }
