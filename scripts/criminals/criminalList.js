@@ -7,6 +7,9 @@ import { getCriminalFacilities, useCriminalFacilities } from "../facility/crimin
 const contentTarget = document.querySelector(".criminalsContainer");
 const eventHub = document.querySelector(".container");
 
+let facilities = []
+let crimFac = []
+let criminals = []
 /*
 
 
@@ -19,13 +22,11 @@ eventHub.addEventListener("crimeChosen", (customEvent) => {
   const crimeChosen = customEvent.detail.crimeThatWasChosen;
 
   if (crimeChosen !== "0") {
-    const matchingCriminals = appStateCriminals.filter((criminalFromList) => {
+    const matchingCriminals = criminals.filter((criminalFromList) => {
       return criminalFromList.conviction === crimeChosen;
     });
 
-    render(matchingCriminals);
-  } else {
-    render(appStateCriminals);
+    render(matchingCriminals,crimFac,facilities);
   }
 });
 
@@ -36,13 +37,11 @@ eventHub.addEventListener("officerSelected", (event) => {
   const officerSelected = event.detail.officer;
 
   if (officerSelected !== "0") {
-    const matchingOfficer = appStateCriminals.filter((criminalFromList) => {
+    const matchingOfficer = criminals.filter((criminalFromList) => {
       return criminalFromList.arrestingOfficer === officerSelected;
     });
 
-    render(matchingOfficer);
-  } else {
-    render(appStateCriminals);
+    render(matchingOfficer,crimFac,facilities);
   }
 });
 
@@ -68,9 +67,9 @@ export const criminalList = () => {
     .then(getCriminals)
     .then(
       () => {
-        const facilities = useFacilities()
-        const crimFac = useCriminalFacilities()
-        const criminals = useCriminals()
+         facilities = useFacilities()
+         crimFac = useCriminalFacilities()
+         criminals = useCriminals()
         
         render(criminals,crimFac,facilities)
       }
