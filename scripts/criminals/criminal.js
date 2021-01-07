@@ -1,19 +1,26 @@
 
 
-export const criminal = criminalObject => {
+export const criminal = (criminalObject, facilities) => {
   return `
-  
-   <section class="criminal__data">
-    <div>
-      <h2>${criminalObject.name}</h2>
-        <p>Age: ${criminalObject.age}</p>
-        <p>Crime: ${criminalObject.conviction}</p>
-        <p>Term start:${new Date(criminalObject.incarceration.start).toLocaleDateString('en-US')}</p>
-        <p>Term start: ${new Date(criminalObject.incarceration.end).toLocaleDateString('en-US')} </p>
-        <button id="associates" value = ${criminalObject.id}>Associate Alibis</button>
+    <div class="criminal__data">
+        <h4>${criminalObject.name}</h4>
+        <div class="criminal__details">
+            <p>Convicted for ${criminalObject.conviction}</p>
+            <p>Arrested by ${criminalObject.arrestingOfficer}</p>
+            <p>Incarcerated between:
+                ${new Date(criminalObject.incarceration.start).toLocaleDateString()} and
+                ${new Date(criminalObject.incarceration.end).toLocaleDateString()}
+            </p>
+            <p>Age: ${criminalObject.age}</p>
+            <div>
+                <h2>Facilities</h2>
+                <ul>
+                    ${facilities.map(f => `<li>${f.facilityName}</li>`).join("")}
+                </ul>
+            </div>
+            <button id="associates" value="${criminalObject.id}">Show Associates</button>
+        </div>
     </div>
-    </section>
-     
-  ` 
+    `
 }
 
