@@ -15,54 +15,8 @@ const eventHub = document.querySelector(".container");
 let facilities = []
 let crimFac = []
 let criminals = []
-/*
 
 
-Event listeners 
-
-
-*/
-// Listen for the custom event from facilityButton
-// eventHub.addEventListener("facilityButtonPressed", (customEvent) => {
-//   const crimeChosen = customEvent.detail.crimeThatWasChosen;
-
-//   if (crimeChosen !== "0") {
-//     const matchingCriminals = criminals.filter((criminalFromList) => {
-//       return criminalFromList.conviction === crimeChosen;
-//     });
-
-//     render(matchingCriminals,crimFac,facilities);
-//   }
-// });
-
-
-// //Listen for the custom event from officerSelect
-
-// eventHub.addEventListener("officerSelected", (event) => {
-//   const officerSelected = event.detail.officer;
-
-//   if (officerSelected !== "0") {
-//     const matchingOfficer = criminals.filter((criminalFromList) => {
-//       return criminalFromList.arrestingOfficer === officerSelected;
-//     });
-
-//     render(matchingOfficer,crimFac,facilities);
-//   }
-// });
-
-// eventHub.addEventListener("click", (clickEvent) => {
-//   if (clickEvent.target.id === "associates") {
-//     const associateButton = new CustomEvent("associateButtonPressed", {
-//       detail: {
-//         criminalsAssociate: clickEvent.target.value,
-//       },
-//     });
-//     eventHub.dispatchEvent(associateButton);
-//   }
-// })
-
-
-// const witnesses = witnessList();
 
 
 // render ALL criminals initially

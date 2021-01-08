@@ -4,7 +4,7 @@ export const facilityHTML = (criminals,facilityObject) => {
   
   return `
   <div class="facility__data">
-  <h4>${facilityObject.facilityName}</h4>
+  <h1>${facilityObject.facilityName}</h1>
   <div class="facility__details">
       <p>Security Level: ${facilityObject.securityLevel}</p>
       <p>Capacity: ${facilityObject.capacity}</p>
