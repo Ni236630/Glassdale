@@ -7,6 +7,7 @@ variables
 
 
 const contentTarget = document.querySelector(".facility__button")
+const facilityTarget = document.querySelector(".facilityContainer")
 
 const clickTarget = document.querySelector(".criminalsContainer")
 
@@ -26,18 +27,12 @@ export const facilityButton = () => {
 
 /*
 
-Custom Events to Dispatch
+click Events To Change Display
 
 */
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "viewFacilities") {
-    const facilityButton = new CustomEvent("facilityButtonPressed", {
-      detail: {
-        facility: clickEvent.target.value,
-      },
-    });
-    eventHub.dispatchEvent(facilityButton);
     /*
     
     If statement to change display state
@@ -45,12 +40,18 @@ eventHub.addEventListener("click", (clickEvent) => {
     */
     if (clickTarget.style.display === "none"){
       clickTarget.style.display = ""
+      
+      facilityTarget.style.display = "none"
+      
       contentTarget.innerHTML =`<button id="viewFacilities">View Facilities
     </button>`
     
     } else {
+      facilityTarget.style.display = ""
+      
     clickTarget.style.display = "none"
-    contentTarget.innerHTML = `<button id="viewFacilities">Show Criminals
+    
+    contentTarget.innerHTML = `<button id="viewFacilities">View Criminals
     </button>`
     }
   }
