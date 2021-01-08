@@ -27,12 +27,13 @@ export const facilityButton = () => {
 
 /*
 
-click Events To Change Display
+Custom Events to Dispatch
 
 */
 
 eventHub.addEventListener("click", (clickEvent) => {
   if (clickEvent.target.id === "viewFacilities") {
+   
     /*
     
     If statement to change display state
@@ -41,17 +42,18 @@ eventHub.addEventListener("click", (clickEvent) => {
     if (clickTarget.style.display === "none"){
       clickTarget.style.display = ""
       
-      facilityTarget.style.display = "none"
+      facilityTarget.classList.add("is-hidden")
       
       contentTarget.innerHTML =`<button id="viewFacilities">View Facilities
     </button>`
     
     } else {
-      facilityTarget.style.display = ""
       
-    clickTarget.style.display = "none"
+      facilityTarget.classList.remove("is-hidden")
+      
+      clickTarget.style.display = "none"
     
-    contentTarget.innerHTML = `<button id="viewFacilities">View Criminals
+      contentTarget.innerHTML = `<button id="viewFacilities">Show Criminals
     </button>`
     }
   }

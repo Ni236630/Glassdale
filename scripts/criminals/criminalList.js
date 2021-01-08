@@ -42,6 +42,8 @@ eventHub.addEventListener("officerSelected", (event) => {
     });
 
     render(matchingOfficer,crimFac,facilities);
+  } else{
+    render(criminals,crimFac,facilities)
   }
 });
 
